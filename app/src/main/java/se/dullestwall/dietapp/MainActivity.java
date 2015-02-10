@@ -7,29 +7,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ListFragment.OnFragmentInteractionListener {
+public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
+        NavigationDrawerFragment.NavigationDrawerCallbacks, ListFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -53,10 +45,6 @@ public class MainActivity extends ActionBarActivity
 
         // Loads recipes from Json file
         loadRecipes();
-        Log.i("MainActivity", "Recipe name: " + recipes.get(0).getName());
-        Log.i("MainActivity", "Recipe desc: " + recipes.get(0).getDescription());
-        Log.i("MainActivity", "Recipe first ing: " + recipes.get(0).getIngredients().get(0));
-        Log.i("MainActivity", "Recipe first ins: " + recipes.get(0).getInstructions().get(0));
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -82,9 +70,9 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 1:
-                //placeholder
+
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .replace(R.id.container, RecipesFragment.newInstance("test2", Integer.toString(position)))
                         .commit();
 
                 break;
