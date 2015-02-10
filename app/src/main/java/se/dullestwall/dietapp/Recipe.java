@@ -2,9 +2,6 @@ package se.dullestwall.dietapp;
 
 import java.util.List;
 
-/**
- * Created by azzarcher on 10/02/15.
- */
 public class Recipe {
     private long id;
     private String name;
@@ -19,5 +16,21 @@ public class Recipe {
         this.description = description;
         this.ingredients = ingredients;
         this.instructions = instructions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public List<String> getInstructions() {
+        return instructions;
     }
 }

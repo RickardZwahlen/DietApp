@@ -1,6 +1,7 @@
 package se.dullestwall.dietapp;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +20,12 @@ import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity
@@ -33,12 +41,22 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    /**
+     * List of recipes
+     */
+    private List<Recipe> recipes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: insert json parsing
+        // Loads recipes from Json file
+        loadRecipes();
+        Log.i("MainActivity", "Recipe name: " + recipes.get(0).getName());
+        Log.i("MainActivity", "Recipe desc: " + recipes.get(0).getDescription());
+        Log.i("MainActivity", "Recipe first ing: " + recipes.get(0).getIngredients().get(0));
+        Log.i("MainActivity", "Recipe first ins: " + recipes.get(0).getInstructions().get(0));
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -176,4 +194,23 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    private void loadRecipes() {
+        AssetManager am = this.getAssets();
+        InputStream is = null;
+
+        try {
+            is = am.open("recipes.json");
+            RecipeLoader recipeLoader = new RecipeLoader();
+            this.recipes = recipeLoader.readJsonStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null)
+                    is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }

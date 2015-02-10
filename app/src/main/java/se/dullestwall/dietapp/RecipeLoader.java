@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RecipeLoader {
 
-    public List readJsonStream(InputStream in) throws IOException {
+    public List<Recipe> readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return readRecipesArray(reader);
@@ -49,7 +49,7 @@ public class RecipeLoader {
                 description = reader.nextString();
             } else if (next.equals("ingredients") && reader.peek() != JsonToken.NULL) {
                 ingredients = readStringsArray(reader);
-            } else if (next.equals("user")) {
+            } else if (next.equals("instructions")) {
                 instructions = readStringsArray(reader);
             } else {
                 reader.skipValue();
