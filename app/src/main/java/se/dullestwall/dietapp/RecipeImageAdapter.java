@@ -20,9 +20,9 @@ public class RecipeImageAdapter extends BaseAdapter {
     public RecipeImageAdapter(Context c) {
         mInflater = LayoutInflater.from(c);
 
-        mItems.add(new Item("Recipe 1", R.drawable.recipe_1));
-        mItems.add(new Item("Recipe 2", R.drawable.recipe_2));
-        mItems.add(new Item("Recipe 3", R.drawable.recipe_3));
+        mItems.add(new Item("Quinoa and Black Beans", R.drawable.recipe_1));
+        mItems.add(new Item("Chicken Salad", R.drawable.recipe_2));
+        mItems.add(new Item("Roast Beef", R.drawable.recipe_3));
     }
 
     public int getCount() {
