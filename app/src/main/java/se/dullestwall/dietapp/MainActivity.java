@@ -1,27 +1,27 @@
 package se.dullestwall.dietapp;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, ListFragment.OnFragmentInteractionListener {
+public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
+        NavigationDrawerFragment.NavigationDrawerCallbacks, ListFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -33,10 +33,18 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
+    /**
+     * List of recipes
+     */
+    private List<Recipe> recipes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Loads recipes from Json file
+        loadRecipes();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -62,9 +70,9 @@ public class MainActivity extends ActionBarActivity
                         .commit();
                 break;
             case 1:
-                //placeholder
+
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
+                        .replace(R.id.container, RecipesFragment.newInstance("test2", Integer.toString(position)))
                         .commit();
 
                 break;
@@ -174,4 +182,23 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
+    private void loadRecipes() {
+        AssetManager am = this.getAssets();
+        InputStream is = null;
+
+        try {
+            is = am.open("recipes.json");
+            RecipeLoader recipeLoader = new RecipeLoader();
+            this.recipes = recipeLoader.readJsonStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null)
+                    is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
