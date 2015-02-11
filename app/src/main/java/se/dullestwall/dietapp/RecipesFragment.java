@@ -56,9 +56,9 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
     public void onResume()
     {
         super.onResume();
-        ImageAdapter imageAdapter = new ImageAdapter(getActivity());
+        RecipeImageAdapter recipeImageAdapter = new RecipeImageAdapter(getActivity());
         GridView gridview = (GridView)getActivity().findViewById(R.id.recipes_view);
-        gridview.setAdapter(imageAdapter);
+        gridview.setAdapter(recipeImageAdapter);
     }
 
     @Override
