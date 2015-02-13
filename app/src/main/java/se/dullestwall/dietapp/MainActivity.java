@@ -47,26 +47,15 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Loads recipes from Json file
         loadRecipes();
         //Randomize recipes for each day
-        DailyRandomRecipe daily = new DailyRandomRecipe();
         weekRecipes = new HashMap<String, Recipe>();
-        int random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Monday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Tuesday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Wednesday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Thursday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Friday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Saturday",recipes.get(random));
-        random = daily.getRandomRecipeDay(recipes.size());
-        weekRecipes.put("Sunday",recipes.get(random));
-
+        if(weekRecipes.isEmpty()) {
+            DailyRandomRecipe daily = new DailyRandomRecipe();
+            daily.setWeeklyRecipes();
+        }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);

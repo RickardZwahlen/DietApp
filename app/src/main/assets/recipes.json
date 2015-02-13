@@ -2,6 +2,7 @@
     {
         "id": 1,
          "name": "Quinoa and Black Beans",
+         "imageID": "quinoa_black_beans",
          "description": "Very flavorful alternative to black beans and rice. Quinoa is a nutty grain from South America.",
          "ingredients": ["1 teaspoon vegetable oil",
                          "1 onion, chopped",
@@ -21,7 +22,7 @@
 {
             "id": 2,
              "name": "Pasta carbonara",
-             "image": "spaghetti_carbonara",
+             "imageID": "spaghetti_carbonara",
              "description": "Very flavorful alternative to black beans and rice. Quinoa is a nutty grain from South America.",
              "ingredients": ["300g spaghetti",
                              "150g bacon",

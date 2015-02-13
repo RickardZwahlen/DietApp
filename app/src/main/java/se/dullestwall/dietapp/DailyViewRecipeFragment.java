@@ -16,6 +16,7 @@
 
 package se.dullestwall.dietapp;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,7 +36,10 @@ public class DailyViewRecipeFragment extends Fragment {
     private static final String KEY_TITLE = "title";
     private static final String KEY_INDICATOR_COLOR = "indicator_color";
     private static final String KEY_DIVIDER_COLOR = "divider_color";
+    private static final String KEY_IMAGEID = "imageID";
+
     private static String recName;
+    private static String recImageID;
     private static List<String> recIngredient;
 
     /**
@@ -70,6 +74,7 @@ public class DailyViewRecipeFragment extends Fragment {
     try {
         recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
         recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
+        recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
     }catch (NullPointerException e){
         recName = "Failed";
         recIngredient = MainActivity.recipes.get(0).getIngredients();
@@ -79,10 +84,13 @@ public class DailyViewRecipeFragment extends Fragment {
             int indicatorColor = args.getInt(KEY_INDICATOR_COLOR);
 
             ImageView pic = (ImageView) view.findViewById(R.id.ivDailyFood);
-            pic.setBackgroundResource(R.drawable.recipe_1);
+            int draw = getDrawable(recImageID);
+            pic.setImageResource(draw);
+            pic.setBackgroundColor(indicatorColor);
+
             //Shows Title (What day)
             TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText("Title: " + MainActivity.recipes.size());
+            title.setText("Title: " + recImageID);
             title.setTextColor(indicatorColor);
             //args.getCharSequence(KEY_TITLE)
 
@@ -103,5 +111,11 @@ public class DailyViewRecipeFragment extends Fragment {
                 currIngre = ingredientView.getText();
             }
         }
+    }
+
+    public int getDrawable(String name) {
+        Context context = DailyViewRecipeFragment.this.getActivity().getApplicationContext();
+        int resourceId = context.getResources().getIdentifier(name, "drawable", DailyViewRecipeFragment.this.getActivity().getApplicationContext().getPackageName());
+        return resourceId;
     }
 }
