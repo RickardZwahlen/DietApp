@@ -32,7 +32,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String[] array = {"Hello", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome"};
+    private final String[] array = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -59,9 +59,10 @@ public class ListFragment extends android.support.v4.app.Fragment {
     public void onResume()
     {
         super.onResume();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
+//        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
+        final ListAdapter listAdapter = new ListAdapter(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) getActivity().findViewById(R.id.listview);
-        expandableLayoutListView.setAdapter(arrayAdapter);
+        expandableLayoutListView.setAdapter(listAdapter);
     }
 
     @Override

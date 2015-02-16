@@ -5,6 +5,8 @@
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.github.traex.expandablelayout/library/1.2.2/res" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../ExpandableLayout-master.zip!/ExpandableLayout-master/library/src/main/java" />
+    </SOURCES>
   </library>
 </component>
