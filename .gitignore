@@ -59,3 +59,8 @@ Temporary Items
 .idea/libraries/library_1_2_2.xml
 .idea/inspectionProfiles/profiles_settings.xml
 app/app.iml
+*.lock
+*.bin
+.idea/workspace.xml
+app/app.iml
+app/build.gradle

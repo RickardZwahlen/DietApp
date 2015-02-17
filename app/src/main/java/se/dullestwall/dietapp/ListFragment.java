@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.andexert.expandablelayout.library.ExpandableLayoutListView;
+import java.util.ArrayList;
 
 
 /**
@@ -32,7 +32,9 @@ public class ListFragment extends android.support.v4.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String[] array = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    private ArrayList<String> array = new ArrayList<String>();
+
+//    private final static String[] initialArray=  {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -48,6 +50,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -68,6 +71,16 @@ public class ListFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        array.add("Monday");
+        array.add("Tuesday");
+        array.add("Wednesday");
+        array.add("Thursday");
+        array.add("Friday");
+        array.add("Saturday");
+        array.add("Sunday");
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
