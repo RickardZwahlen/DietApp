@@ -64,3 +64,8 @@ app/app.iml
 .idea/workspace.xml
 app/app.iml
 app/build.gradle
+*.lock
+*.bin
+.idea/libraries/droidicon_0_1_6.xml
+.idea/workspace.xml
+app/app.iml

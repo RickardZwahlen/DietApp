@@ -1,14 +1,19 @@
 package se.dullestwall.dietapp;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.Image;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.thedazzler.droidicon.IconicFontDrawable;
 
 import java.util.ArrayList;
 
@@ -28,6 +33,7 @@ public class ListAdapter extends ArrayAdapter<String> {
         this.array=array;
         this.context=context;
     }
+
 
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -56,12 +62,39 @@ public class ListAdapter extends ArrayAdapter<String> {
 
         if (p != null) {
             ImageView iv = (ImageView) v.findViewById(R.id.rowImageView);
-            String url = "http://square.github.io/picasso/static/debug.png";
-            Picasso.with(context).load(url).resize(300, 200).into(iv);
+            String url = "http://images.media-allrecipes.com/userphotos/140x140/00/86/93/869323.jpg";
+            Picasso.with(context).load(url).resize(200, 200).into(iv);
             TextView tv = (TextView) v.findViewById(R.id.header_text);
             tv.setText(array.get(position));
             TextView tv2 = (TextView) v.findViewById(R.id.rowTextView);
-            tv2.setText("This is " + Integer.toString(position) + "\nLorem ipsum blablabla nginaoenguin aengunsegon songonsengoinsoe ngnsegnsensenn ns ngsen sen gns ngsn grsn nsonho isnhiod thkmthkmt ho noidrnhoi nroh nrdion nrh nkn");
+            tv2.setText("Strawberry Goat Cheese Bruschetta\n" + 
+                  "    Heat vinegar in a small skillet over medium-low heat. Simmer until reduced by about half, 8 to 10 minutes. Remove from heat and allow to cool to room temperature.\n" +
+                    "    Prepare a grill for high heat. Place bread slices on a foil-lined baking sheet and drizzle with olive oil.\n" +
+                    "    Combine strawberries and thyme in a small bowl and set aside.\n" +
+                    "    Grill bread on the preheated grill until browned, about 3 minutes per side.\n" +
+                    "    Spread goat cheese on toasted bread. Add black pepper, salt, and reduced vinegar to the strawberry mixture. Spoon over the goat cheese topped bruschetta. Garnish with additional thyme.\n");
+
+//            ImageView iconView1 = (ImageView) v.findViewById(R.id.imageView);
+
+//            IconicFontDrawable iconicFontDrawable = new IconicFontDrawable(context);
+//            iconicFontDrawable.setIcon("gmd-search");
+//            iconicFontDrawable.setIconColor(context.getResources().getColor(R.color.light_blue));
+
+//            iconView1.setImageDrawable(iconicFontDrawable);
+//            iconView1.setMaxWidth(500);
+//            iconView1.setMaxHeight(500);
+
+//            ImageView iconView2 = (ImageView) v.findViewById(R.id.rowButton);
+
+
+
+//            IconicFontDrawable iconicFontDrawable2 = new IconicFontDrawable(context);
+//            iconicFontDrawable2.setIcon("fa-random");
+//            iconicFontDrawable.setIconColor(context.getResources().getColor(R.color.light_blue));
+
+//            iconView2.setBackground(iconicFontDrawable2);
+//            iconView2.setMaxWidth(500);
+//            iconView2.setMaxHeight(500);
 
 
 

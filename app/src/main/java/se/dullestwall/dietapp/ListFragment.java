@@ -66,6 +66,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
         final ListAdapter listAdapter = new ListAdapter(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) getActivity().findViewById(R.id.listview);
         expandableLayoutListView.setAdapter(listAdapter);
+//        ((ExpandableLayoutItem)expandableLayoutListView.getChildAt(0)).show();
     }
 
     @Override
