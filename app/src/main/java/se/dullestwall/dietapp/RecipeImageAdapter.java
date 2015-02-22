@@ -1,6 +1,7 @@
 package se.dullestwall.dietapp;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +21,11 @@ public class RecipeImageAdapter extends BaseAdapter {
     public RecipeImageAdapter(Context c) {
         mInflater = LayoutInflater.from(c);
 
-        mItems.add(new Item("Quinoa and Black Beans", R.drawable.recipe_1));
-        mItems.add(new Item("Chicken Salad", R.drawable.recipe_2));
-        mItems.add(new Item("Roast Beef", R.drawable.recipe_3));
-        mItems.add(new Item("Greek Eggplant Salad", R.drawable.recipe_4));
-        mItems.add(new Item("Pumpkin Soup", R.drawable.recipe_5));
-        mItems.add(new Item("Blueberry Smoothie", R.drawable.recipe_6));
-        mItems.add(new Item("Poached Eggs", R.drawable.recipe_7));
-        mItems.add(new Item("Grilled Vegetables with Feta", R.drawable.recipe_8));
+        for (Recipe r : MainActivity.recipes) {
+            String name = r.getImageID();
+            int id = c.getResources().getIdentifier(name, "drawable", c.getPackageName());
+            mItems.add(new Item(r.getName(), id));
+        }
     }
 
     public int getCount() {
