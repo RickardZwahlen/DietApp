@@ -54,8 +54,8 @@ public class RecipeImageAdapter extends BaseAdapter {
             v.setTag(R.id.text, v.findViewById(R.id.text));
         }
 
-        picture = (ImageView) v.getTag(R.id.picture);
-        name = (TextView) v.getTag(R.id.text);
+        picture = (ImageView) v.findViewById(R.id.picture);
+        name = (TextView) v.findViewById(R.id.text);
 
         Item item = getItem(i);
 

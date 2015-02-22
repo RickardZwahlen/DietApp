@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -36,15 +38,24 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     /**
      * List of recipes
      */
-    private List<Recipe> recipes;
+    public static List<Recipe> recipes;
+    //Saving Recipes in a HashMap, String=Day
+    public static HashMap<String,Recipe> weekRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Loads recipes from Json file
         loadRecipes();
+        //Randomize recipes for each day
+        weekRecipes = new HashMap<String, Recipe>();
+        if(weekRecipes.isEmpty()) {
+            DailyRandomRecipe daily = new DailyRandomRecipe();
+            daily.setWeeklyRecipes();
+        }
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -61,6 +72,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction;
         switch(position)
         {
             case 0:
@@ -71,17 +83,19 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 break;
             case 1:
 
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, RecipesFragment.newInstance("test2", Integer.toString(position)))
-                        .commit();
+                transaction = getSupportFragmentManager().beginTransaction();
+                RecipesFragment fragmentAllRec = new RecipesFragment();
+                transaction.replace(R.id.container, fragmentAllRec);
+                transaction.commit();
 
                 break;
 
             case 2:
                 //placeholder
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position))
-                        .commit();
+                transaction = getSupportFragmentManager().beginTransaction();
+                DailyViewFragment fragmentDaily = new DailyViewFragment();
+                transaction.replace(R.id.container, fragmentDaily);
+                transaction.commit();
                 break;
         }
 
