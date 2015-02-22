@@ -23,6 +23,11 @@ public class RecipeImageAdapter extends BaseAdapter {
         mItems.add(new Item("Quinoa and Black Beans", R.drawable.recipe_1));
         mItems.add(new Item("Chicken Salad", R.drawable.recipe_2));
         mItems.add(new Item("Roast Beef", R.drawable.recipe_3));
+        mItems.add(new Item("Greek Eggplant Salad", R.drawable.recipe_4));
+        mItems.add(new Item("Pumpkin Soup", R.drawable.recipe_5));
+        mItems.add(new Item("Blueberry Smoothie", R.drawable.recipe_6));
+        mItems.add(new Item("Poached Eggs", R.drawable.recipe_7));
+        mItems.add(new Item("Grilled Vegetables with Feta", R.drawable.recipe_8));
     }
 
     public int getCount() {
