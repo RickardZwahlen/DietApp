@@ -34,7 +34,8 @@
               android:layout_height="wrap_content"
               android:text="To Get: "
               android:gravity="center"
-              android:textStyle="bold" />
+              android:textSize="20sp"
+              android:textStyle="bold"/>
        <ListView
            android:id="@android:id/list"
            android:layout_width="fill_parent"
@@ -53,6 +54,7 @@
               android:layout_height="wrap_content"
               android:text="Notes: "
               android:gravity="center"
+              android:textSize="20sp"
               android:textStyle="bold"/>
           <EditText
               android:layout_width="fill_parent"
