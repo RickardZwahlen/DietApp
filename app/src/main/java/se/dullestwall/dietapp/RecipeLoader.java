@@ -35,6 +35,7 @@ public class RecipeLoader {
         long id = 0;
         String name = null;
         String description = null;
+        String imageID = null;
         List<String> ingredients = null;
         List<String> instructions = null;
 
@@ -45,6 +46,8 @@ public class RecipeLoader {
                 id = reader.nextLong();
             } else if (next.equals("name")) {
                 name = reader.nextString();
+            } else if (next.equals("imageID")) {
+                imageID = reader.nextString();
             } else if (next.equals("description")) {
                 description = reader.nextString();
             } else if (next.equals("ingredients") && reader.peek() != JsonToken.NULL) {
@@ -56,7 +59,7 @@ public class RecipeLoader {
             }
         }
         reader.endObject();
-        return new Recipe(id, name, description, ingredients, instructions);
+        return new Recipe(id, name, description, imageID, ingredients, instructions);
     }
 
     public List readStringsArray(JsonReader reader) throws IOException {
