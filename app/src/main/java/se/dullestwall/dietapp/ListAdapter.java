@@ -65,7 +65,8 @@ public class ListAdapter extends ArrayAdapter<String> {
             String url = "http://images.media-allrecipes.com/userphotos/140x140/00/86/93/869323.jpg";
             Picasso.with(context).load(url).resize(200, 200).into(iv);
             TextView tv = (TextView) v.findViewById(R.id.header_text);
-            tv.setText(array.get(position));
+            String dishName= MainActivity.weekRecipes.get(array.get(position)).getName();
+            tv.setText(array.get(position) + "      " + dishName);
             TextView tv2 = (TextView) v.findViewById(R.id.rowTextView);
             tv2.setText("Strawberry Goat Cheese Bruschetta\n" + 
                   "    Heat vinegar in a small skillet over medium-low heat. Simmer until reduced by about half, 8 to 10 minutes. Remove from heat and allow to cool to room temperature.\n" +
