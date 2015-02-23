@@ -57,26 +57,6 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
         return rootView;
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState){
-
-        GridView gridView = (GridView)view.findViewById(R.id.recipes_view);
-        recipeImageAdapter = new RecipeImageAdapter(getActivity());
-        gridView.setAdapter(recipeImageAdapter);
-
-     //   recipeImageAdapter = new RecipeImageAdapter(getActivity());
-     //   GridView gridview = (GridView)rootView.findViewById(R.id.recipes_view);
-     //   gridview.setAdapter(recipeImageAdapter);
-
-
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

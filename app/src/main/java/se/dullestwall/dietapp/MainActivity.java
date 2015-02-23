@@ -24,7 +24,8 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
-        NavigationDrawerFragment.NavigationDrawerCallbacks, WeekListFragment.OnFragmentInteractionListener {
+        NavigationDrawerFragment.NavigationDrawerCallbacks, WeekListFragment.OnFragmentInteractionListener,
+        DietFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -40,6 +41,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
      * List of recipes
      */
     public static List<Recipe> recipes;
+    public static List<Diet> diets;
     //Saving Recipes in a HashMap, String=Day
     public static HashMap<String,Recipe> weekRecipes;
     public static HashMap<String,List<String>> weekTotalIngredients;
@@ -53,9 +55,9 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Loads recipes from Json file
         loadRecipes();
+        loadDiets();
         //Randomize recipes for each day
         dailyColor = Color.RED;
         if(first==0) {
@@ -101,7 +103,6 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 transaction.commit();
 
                 break;
-
             case 2:
                 //placeholder
                 transaction = getSupportFragmentManager().beginTransaction();
@@ -114,6 +115,12 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 transaction = getSupportFragmentManager().beginTransaction();
                 ShoppingListFragment fragmentShoppList = new ShoppingListFragment();
                 transaction.replace(R.id.container, fragmentShoppList);
+                transaction.commit();
+                break;
+            case 4:
+                transaction = getSupportFragmentManager().beginTransaction();
+                DietFragment dietFragment = new DietFragment();
+                transaction.replace(R.id.container, dietFragment);
                 transaction.commit();
                 break;
         }
@@ -226,6 +233,26 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
             is = am.open("recipes.json");
             RecipeLoader recipeLoader = new RecipeLoader();
             this.recipes = recipeLoader.readJsonStream(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null)
+                    is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void loadDiets() {
+        AssetManager am = this.getAssets();
+        InputStream is = null;
+
+        try {
+            is = am.open("diets.json");
+            DietLoader dietLoader = new DietLoader();
+            this.diets = dietLoader.readJsonStream(is);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

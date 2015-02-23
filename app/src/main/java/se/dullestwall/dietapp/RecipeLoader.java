@@ -37,12 +37,8 @@ public class RecipeLoader {
         String name = null;
         String description = null;
         String imageID = null;
-<<<<<<< HEAD
         List<String> diets = null;
-        List<String> ingredients = null;
-=======
         HashMap<String,List<String>> ingredients = null;
->>>>>>> patrik
         List<String> instructions = null;
 
         reader.beginObject();
