@@ -2,58 +2,46 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
+        jar="/Applications/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="962e8b12569c56dbdcf8367eb4eac8bb129cd18f">
-        <dex dex="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.2-3722fd96cf022d9c0031c4836c14f385dc4cdaf4.jar" />
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-6658c117293958a7383bcbb346a57fefebf27ee4.jar" />
     </item>
     <item
-        jar="C:\Users\Patrik\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.2\support-annotations-21.0.2.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="99373741f99a0556ee293c41e8faa1ca3ae8a4e6">
-        <dex dex="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.2-eda3d501382edb050d1cdfd97272bc57b51f32e2.jar" />
-    </item>
-    <item
-<<<<<<< HEAD
-        jar="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\exploded-aar\com.github.traex.expandablelayout\library\1.2.2\classes.jar"
-=======
-        jar="D:\Dropbox\BoffBoff\workspace\Android\DietApp\DietTestet\app\build\intermediates\exploded-aar\com.github.theDazzler\droidicon\0.1.6\classes.jar"
+        jar="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/exploded-aar/com.github.theDazzler/droidicon/0.1.6/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="a2beeeb672a181514dea06b83b304c159082d141">
-        <dex dex="D:\Dropbox\BoffBoff\workspace\Android\DietApp\DietTestet\app\build\intermediates\pre-dexed\debug\classes-0ded3ed24ae1cfa52b9e44255bceaa9b3dbc9df9.jar" />
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/classes-653ad11e8f1d8da6c15ae8a8c4ce0f7adf2bc934.jar" />
     </item>
     <item
-        jar="D:\Dropbox\BoffBoff\workspace\Android\DietApp\DietTestet\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\libs\internal_impl-21.0.2.jar"
->>>>>>> origin/rickard
+        jar="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="abeff860f55e6b771b5053b593886c20bbc3fe84">
-        <dex dex="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\pre-dexed\debug\classes-e27cf843850bed8054546f0118303d1fbaf5aa45.jar" />
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/classes-e7a266408809d1f9c357e6fd1da2e41c4752c020.jar" />
     </item>
     <item
-<<<<<<< HEAD
-        jar="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.2\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="7ae2d38807a43b2f2185ff4089a92c790b579e54">
-        <dex dex="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\pre-dexed\debug\classes-404610769cec0a2fe3d3291a3ad9741745f41766.jar" />
-=======
-        jar="C:\Users\Rickard\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.0\7ff0e000d1e27e356567f56c92af3b8ab912636f\picasso-2.5.0.jar"
+        jar="/Users/azzarcher/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.0/7ff0e000d1e27e356567f56c92af3b8ab912636f/picasso-2.5.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="7ff0e000d1e27e356567f56c92af3b8ab912636f">
-        <dex dex="D:\Dropbox\BoffBoff\workspace\Android\DietApp\DietTestet\app\build\intermediates\pre-dexed\debug\picasso-2.5.0-a79d58ba38feecda682f436391ff5b400c42f768.jar" />
->>>>>>> origin/rickard
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/picasso-2.5.0-1b27601cb036430a636bd2870080f0ed28d1831b.jar" />
     </item>
     <item
-        jar="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.2\classes.jar"
+        jar="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="d1bf02de1c56d942e7a9d093b8610ba1ef4128e3">
-        <dex dex="C:\Users\Patrik\Documents\GitHub\DietApp\app\build\intermediates\pre-dexed\debug\classes-f4dbe8b1e3faa94e56ab3053d6b2c0891a00af47.jar" />
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/classes-656d0bc7ec2b57bdf498f38a7a8f4992e4ac4e1b.jar" />
+    </item>
+    <item
+        jar="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/azzarcher/GitHub/DietAppAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5d5ebb319161f7ac1678a2ab93472d1a9e422f88.jar" />
     </item>
 
 </items>
