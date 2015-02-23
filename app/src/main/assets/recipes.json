@@ -19,23 +19,23 @@
                           "Mix quinoa into onion mixture and cover with vegetable broth; season with cumin, cayenne pepper, salt, and pepper. Bring the mixture to a boil. Cover, reduce heat, and simmer until quinoa is tender and broth is absorbed, about 20 minutes.",
                           "Stir frozen corn into the saucepan, and continue to simmer until heated through, about 5 minutes; mix in the black beans and cilantro."]
     },
-{
-            "id": 2,
-             "name": "Pasta carbonara",
-             "imageID": "spaghetti_carbonara",
-             "description": "Very flavorful alternative to black beans and rice. Quinoa is a nutty grain from South America.",
-             "ingredients": ["300g spaghetti",
-                             "150g bacon",
-                             "1 onion",
-                             "1 cloves garlic",
-                             "2st egg",
-                             "0.5dl cream",
-                             "100g parmesan",
-                             "salt and ground black pepper to taste"],
-             "instructions": ["Combine beaten eggs, heavy whipped cream and parmesan cheese then mix well. Set aside.",
-                              "Fry the bacon until the texture becomes crisp. Set aside.",
-                              "On the same cooking pan, sauté the garlic and onion",
-                              "Put in the spaghetti noodles and beaten egg-heavy whipping cream-parmesan cheese mixture then mix well. cook for 1-2 minutes",
-                              "Add the fried bacon and serv."]
-        }
+    {
+        "id": 2,
+         "name": "Pasta carbonara",
+         "imageID": "spaghetti_carbonara",
+         "description": "Very flavorful alternative to black beans and rice. Quinoa is a nutty grain from South America.",
+         "ingredients": ["300g spaghetti",
+                         "150g bacon",
+                         "1 onion",
+                         "1 cloves garlic",
+                         "2st egg",
+                         "0.5dl cream",
+                         "100g parmesan",
+                         "salt and ground black pepper to taste"],
+         "instructions": ["Combine beaten eggs, heavy whipped cream and parmesan cheese then mix well. Set aside.",
+                          "Fry the bacon until the texture becomes crisp. Set aside.",
+                          "On the same cooking pan, sauté the garlic and onion",
+                          "Put in the spaghetti noodles and beaten egg-heavy whipping cream-parmesan cheese mixture then mix well. cook for 1-2 minutes",
+                          "Add the fried bacon and serv."]
+    }
 ]
