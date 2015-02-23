@@ -11,16 +11,18 @@ import android.widget.ArrayAdapter;
 
 import com.andexert.expandablelayout.library.ExpandableLayoutListView;
 
+import java.util.zip.Inflater;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ListFragment.OnFragmentInteractionListener} interface
+ * {@link WeekListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ListFragment#newInstance} factory method to
+ * Use the {@link WeekListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListFragment extends android.support.v4.app.Fragment {
+public class WeekListFragment extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,7 +34,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private final String[] array = {"Hello", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome", "World", "Android", "is", "Awesome"};
+    //private final String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -42,8 +44,8 @@ public class ListFragment extends android.support.v4.app.Fragment {
      * @return A new instance of fragment ListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(String param1, String param2) {
-        ListFragment fragment = new ListFragment();
+    public static WeekListFragment newInstance(String param1, String param2) {
+        WeekListFragment fragment = new WeekListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,7 +53,7 @@ public class ListFragment extends android.support.v4.app.Fragment {
         return fragment;
     }
 
-    public ListFragment() {
+    public WeekListFragment() {
         // Required empty public constructor
     }
 
@@ -59,6 +61,12 @@ public class ListFragment extends android.support.v4.app.Fragment {
     public void onResume()
     {
         super.onResume();
+        String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        DailyRandomRecipe trans = new DailyRandomRecipe();
+        for(int i=0; i<7;i++){
+            String day = trans.TranslateDay(i);
+            array[i] = day+": " + MainActivity.weekRecipes.get(day).getName();
+        }
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) getActivity().findViewById(R.id.listview);
         expandableLayoutListView.setAdapter(arrayAdapter);
@@ -79,7 +87,16 @@ public class ListFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        final View list = inflater.inflate(R.layout.fragment_list, container, false);
+
+       /* list.findViewById(R.id.bv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.findViewById(R.id.bvHeader).setVisibility(View.VISIBLE);
+            }
+        });
+*/
+        return list;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

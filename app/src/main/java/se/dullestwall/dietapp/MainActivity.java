@@ -2,6 +2,7 @@ package se.dullestwall.dietapp;
 
 import android.app.Activity;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -23,7 +24,7 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
-        NavigationDrawerFragment.NavigationDrawerCallbacks, ListFragment.OnFragmentInteractionListener {
+        NavigationDrawerFragment.NavigationDrawerCallbacks, WeekListFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -41,6 +42,11 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     public static List<Recipe> recipes;
     //Saving Recipes in a HashMap, String=Day
     public static HashMap<String,Recipe> weekRecipes;
+    public static HashMap<String,List<String>> weekTotalIngredients;
+    public static HashMap<String,Recipe> weekTotalIngredients2;
+    public int dailyColor;
+    public int first = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +57,17 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         // Loads recipes from Json file
         loadRecipes();
         //Randomize recipes for each day
-        weekRecipes = new HashMap<String, Recipe>();
-        if(weekRecipes.isEmpty()) {
+        dailyColor = Color.RED;
+        if(first==0) {
+            weekRecipes = new HashMap<>();
+            weekTotalIngredients2 = new HashMap<>();
+            weekTotalIngredients = new HashMap<>();
             DailyRandomRecipe daily = new DailyRandomRecipe();
             daily.setWeeklyRecipes();
+            weekTotalIngredients2 = (HashMap<String,Recipe>)weekRecipes;
+            daily.getAllIngredients(weekTotalIngredients2);
         }
+        first=1;//Checks if its the first time on this page
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -78,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
             case 0:
 
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, ListFragment.newInstance("test", Integer.toString(position)))
+                        .replace(R.id.container, WeekListFragment.newInstance("test", Integer.toString(position)))
                         .commit();
                 break;
             case 1:
@@ -97,6 +109,13 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 transaction.replace(R.id.container, fragmentDaily);
                 transaction.commit();
                 break;
+            case 3:
+                //placeholder
+                transaction = getSupportFragmentManager().beginTransaction();
+                ShoppingListFragment fragmentShoppList = new ShoppingListFragment();
+                transaction.replace(R.id.container, fragmentShoppList);
+                transaction.commit();
+                break;
         }
 
     }
@@ -111,6 +130,9 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                break;
+            case 4:
+                mTitle = getString(R.string.title_section4);
                 break;
         }
     }

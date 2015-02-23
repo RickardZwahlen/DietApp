@@ -12,35 +12,47 @@
         android:layout_height="200dp"
         android:background="@drawable/ic_launcher"
         android:layout_margin="15dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="fill_parent"
-       android:layout_marginRight="30dp"
-       android:layout_marginLeft="30dp"
+       android:layout_height="match_parent"
        android:orientation="vertical"
        android:background="#50000000">
 
         <TextView
-              android:id="@+id/item_title"
+              android:id="@+id/tvDailyRecipeName"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Ingrediance:"
+              android:text="Ingredients:"
               android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-              android:id="@+id/item_indicator_color"
+              android:id="@+id/tvDailyIngredientHeader"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge" />
-       <ScrollView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
 
             <TextView
-                  android:id="@+id/item_divider_color"
+                  android:id="@+id/tvDailyIngredients"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:textAppearance="?android:attr/textAppearanceLarge" />
-       </ScrollView>
+
+       <TextView
+           android:id="@+id/tvDailyInstructionsHeader"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
+       <TextView
+           android:id="@+id/tvDailyInstructions"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textAppearance="?android:attr/textAppearanceLarge" />
    </LinearLayout>
+</ScrollView>
+
 </LinearLayout>

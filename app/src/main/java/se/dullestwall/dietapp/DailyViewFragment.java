@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import com.example.android.common.view.SlidingTabLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -94,12 +95,12 @@ public class DailyViewFragment extends Fragment {
     /**
      * A {@link android.support.v4.view.ViewPager} which will be used in conjunction with the {@link com.example.android.common.view.SlidingTabLayout} above.
      */
-    private ViewPager mViewPager;
+    public static ViewPager mViewPager;
 
     /**
      * List of {@link se.dullestwall.dietapp.DailyViewFragment.SamplePagerItem} which represent this sample's tabs.
      */
-    private List<SamplePagerItem> mTabs = new ArrayList<SamplePagerItem>();
+    public List<SamplePagerItem> mTabs = new ArrayList<SamplePagerItem>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -176,8 +177,12 @@ public class DailyViewFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
         mViewPager.setAdapter(new SampleFragmentPagerAdapter(getChildFragmentManager()));
+
         // END_INCLUDE (setup_viewpager)
 
         // BEGIN_INCLUDE (setup_slidingtablayout)
@@ -185,6 +190,9 @@ public class DailyViewFragment extends Fragment {
         // it's PagerAdapter set.
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
+
+        //Start by showing todays Recipe
+        mViewPager.setCurrentItem(day-2);
 
         // BEGIN_INCLUDE (tab_colorizer)
         // Set a TabColorizer to customize the indicator and divider colors. Here we just retrieve
