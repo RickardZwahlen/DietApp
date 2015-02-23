@@ -28,6 +28,18 @@ public class RecipeImageAdapter extends BaseAdapter {
         }
     }
 
+    public RecipeImageAdapter(Context c, String filter) {
+        mInflater = LayoutInflater.from(c);
+
+        for (Recipe r : MainActivity.recipes) {
+            if (r.getDiets().contains(filter)) {
+                String name = r.getImageID();
+                int id = c.getResources().getIdentifier(name, "drawable", c.getPackageName());
+                mItems.add(new Item(r.getName(), id));
+            }
+        }
+    }
+
     public int getCount() {
         return mItems.size();
     }
