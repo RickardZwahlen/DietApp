@@ -46,26 +46,25 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     public static HashMap<String,Recipe> weekTotalIngredients2;
     public int dailyColor;
     public int first = 0;
+    public static int done1=0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+    done1=0;
 
         // Loads recipes from Json file
         loadRecipes();
         //Randomize recipes for each day
         dailyColor = Color.RED;
         if(first==0) {
-            weekRecipes = new HashMap<>();
-            weekTotalIngredients2 = new HashMap<>();
-            weekTotalIngredients = new HashMap<>();
+            weekRecipes = new HashMap();
+            weekTotalIngredients2 = new HashMap();
+            weekTotalIngredients = new HashMap();
             DailyRandomRecipe daily = new DailyRandomRecipe();
             daily.setWeeklyRecipes();
-            weekTotalIngredients2 = (HashMap<String,Recipe>)weekRecipes;
-            daily.getAllIngredients(weekTotalIngredients2);
         }
         first=1;//Checks if its the first time on this page
 

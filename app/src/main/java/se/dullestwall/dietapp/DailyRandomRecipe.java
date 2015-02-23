@@ -45,6 +45,11 @@ public class DailyRandomRecipe {
 
             random = getRandomRecipeDay(size);
             MainActivity.weekRecipes.put("Sunday", MainActivity.recipes.get(random));
+
+            MainActivity.weekTotalIngredients2 = (HashMap<String,Recipe>) MainActivity.weekRecipes;
+            getAllIngredients(MainActivity.weekTotalIngredients2);
+
+            MainActivity.done1=1;
         }
     }
 
@@ -54,14 +59,14 @@ public class DailyRandomRecipe {
     }
 // Create a groceryList
     public void getAllIngredients(HashMap<String, Recipe> r) {
-        HashMap<String, List<String>> total = new HashMap<>();
+        HashMap<String, List<String>> total = new HashMap();
         boolean done = false;
         double count1 = 0;
         double count2 = 0;
-        HashMap<String, List<String>> hash1 = new HashMap<>();
+        HashMap<String, List<String>> hash1 = new HashMap();
 
         String day = TranslateDay(0);
-        r.get(day).getIngredients();
+      //  r.get(day).getIngredients();
        try{
         if(MainActivity.weekTotalIngredients.isEmpty()){
             MainActivity.weekTotalIngredients.put("iname",r.get(day).getIngredients().get("iname"));
@@ -72,7 +77,7 @@ public class DailyRandomRecipe {
 
        }
         total = (HashMap<String, List<String>>) MainActivity.weekTotalIngredients.clone();
-        hash1 = (HashMap<String, List<String>>) r.get("Tuesday").getIngredients().clone();
+        hash1 = (HashMap<String, List<String>>) r.get("Tuesday").getIngredients();
 
             for (int i = 0; i < hash1.get("iname").size(); i++) {
                 String ingredient = hash1.get("iname").get(i);

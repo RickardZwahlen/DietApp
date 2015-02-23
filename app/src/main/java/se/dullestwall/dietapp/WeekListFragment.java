@@ -67,11 +67,11 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
     {
         super.onResume();
         //String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        ArrayList<String> array = new ArrayList<String>();
+//        ArrayList<String> array = new ArrayList<String>();
         DailyRandomRecipe trans = new DailyRandomRecipe();
         for(int i=0; i<7;i++) {
             String day = trans.TranslateDay(i);
-            array.add(i, day + ": " + MainActivity.weekRecipes.get(day).getName());
+//            array.add(i, day + ": " + MainActivity.weekRecipes.get(day).getName());
         }
 //        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ListAdapter listAdapter = new ListAdapter(getActivity(), R.layout.view_row, R.id.header_text, array);

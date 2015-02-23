@@ -14,7 +14,7 @@ import java.util.List;
 
 public class RecipeImageAdapter extends BaseAdapter {
     // Keep all Images in array
-    private final List<Item> mItems = new ArrayList<>();
+    private final List<Item> mItems = new ArrayList();
     private final LayoutInflater mInflater;
 
     // Constructor
