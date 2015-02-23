@@ -7,15 +7,17 @@ public class Recipe {
     private String name;
     private String description;
     private String imageID;
+    private List<String> diets;
     private List<String> ingredients;
     private List<String> instructions;
 
     public Recipe(long id, String name, String description, String imageID,
-                  List<String> ingredients, List<String> instructions) {
+                  List<String> diets, List<String> ingredients, List<String> instructions) {
         this.id = id;
         this.name = name;
         this.imageID = imageID;
         this.description = description;
+        this.diets = diets;
         this.ingredients = ingredients;
         this.instructions = instructions;
     }
@@ -37,4 +39,6 @@ public class Recipe {
     public List<String> getInstructions() {
         return instructions;
     }
+
+    public List<String> getDiets() { return diets; }
 }

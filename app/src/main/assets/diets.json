@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Paleo",
+        "imageID": "paleo"
+    },
+    {
+        "id": 2,
+        "name": "LCHF",
+        "imageID": "lchf"
+    },
+    {
+        "id": 3,
+        "name": "Fitgirl",
+        "imageID": "fitgirl"
+    },
+    {
+        "id": 4,
+        "name": "Atkins",
+        "imageID": "atkins"
+    },
+    {
+        "id": 5,
+        "name": "Vegan",
+        "imageID": "vegan"
+    },
+    {
+        "id": 6,
+        "name": "Vegetarian",
+        "imageID": "vegetarian"
+    },
+    {
+        "id": 7,
+        "name": "Raw Food",
+        "imageID": "raw_food"
+    },
+]
