@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,7 +42,8 @@ public class DailyViewRecipeFragment extends Fragment {
 
     private static String recName;
     private static String recImageID;
-    private static List<String> recIngredient;
+    private static HashMap<String, List<String>> recIngredient;
+    private static List<String> recInstructions;
 
     /**
      * @return a new instance of {@link se.dullestwall.dietapp.DailyViewRecipeFragment}, adding the parameters into a bundle and
@@ -74,6 +77,7 @@ public class DailyViewRecipeFragment extends Fragment {
     try {
         recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
         recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
+        recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
         recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
     }catch (NullPointerException e){
         recName = "Failed";
@@ -89,27 +93,40 @@ public class DailyViewRecipeFragment extends Fragment {
             pic.setBackgroundColor(indicatorColor);
 
             //Shows Title (What day)
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText("Title: " + recImageID);
-            title.setTextColor(indicatorColor);
+            TextView title = (TextView) view.findViewById(R.id.tvDailyRecipeName);
+            title.setText(recName);
+            title.setTextSize(22);
+
             //args.getCharSequence(KEY_TITLE)
 
-            TextView recipeView = (TextView) view.findViewById(R.id.item_indicator_color);
-            recipeView.setText("Recipe: " + recName);
-            recipeView.setTextSize(20);
+            TextView IngHead = (TextView) view.findViewById(R.id.tvDailyIngredientHeader);
+            IngHead.setText("Ingredients:");
+            IngHead.setTextSize(18);
 
-
-            int dividerColor = args.getInt(KEY_DIVIDER_COLOR);
-            CharSequence currIngre;
-            TextView ingredientView = (TextView) view.findViewById(R.id.item_divider_color);
+            CharSequence currIngredient;
+            TextView ingredientView = (TextView) view.findViewById(R.id.tvDailyIngredients);
             ingredientView.setTextSize(16);
-            ingredientView.setText("Ingredients: \n");
-            currIngre = ingredientView.getText();
-            for(int i=0; i < recIngredient.size(); i++)
+            currIngredient = ingredientView.getText();
+            for(int i=0; i < recIngredient.get("iname").size(); i++)
             {
-                ingredientView.setText(currIngre + recIngredient.get(i)+"\n");
-                currIngre = ingredientView.getText();
+                ingredientView.setText(currIngredient + recIngredient.get("iquantity").get(i)+recIngredient.get("imeasurement").get(i)+" "+ recIngredient.get("iname").get(i)+"\n");
+                currIngredient = ingredientView.getText();
             }
+
+            TextView InsHead = (TextView) view.findViewById(R.id.tvDailyInstructionsHeader);
+            InsHead.setText("Instructions:");
+            InsHead.setTextSize(18);
+
+            TextView InstructionsView = (TextView) view.findViewById(R.id.tvDailyInstructions);
+            InstructionsView.setTextSize(16);
+            CharSequence currInstructions;
+            currInstructions = InstructionsView.getText();
+            for(int i=0; i < recInstructions.size(); i++)
+            {
+                InstructionsView.setText(currInstructions +Integer.toString(i+1)+". "+ recInstructions.get(i)+"\n");
+                currInstructions = InstructionsView.getText();
+            }
+
         }
     }
 

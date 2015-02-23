@@ -1,5 +1,6 @@
 package se.dullestwall.dietapp;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Recipe {
@@ -7,12 +8,20 @@ public class Recipe {
     private String name;
     private String description;
     private String imageID;
+<<<<<<< HEAD
     private List<String> diets;
     private List<String> ingredients;
     private List<String> instructions;
 
     public Recipe(long id, String name, String description, String imageID,
                   List<String> diets, List<String> ingredients, List<String> instructions) {
+=======
+    private HashMap<String, List<String>> ingredients;
+    private List<String> instructions;
+
+    public Recipe(long id, String name, String description, String imageID,
+                  HashMap<String, List<String>> ingredients, List<String> instructions) {
+>>>>>>> patrik
         this.id = id;
         this.name = name;
         this.imageID = imageID;
@@ -32,7 +41,7 @@ public class Recipe {
 
     public String getImageID() {return imageID; }
 
-    public List<String> getIngredients() {
+    public HashMap<String, List<String>> getIngredients() {
         return ingredients;
     }
 
