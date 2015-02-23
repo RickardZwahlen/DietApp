@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.andexert.expandablelayout.library.ExpandableLayoutListView;
+import java.util.ArrayList;
 
 import java.util.zip.Inflater;
 
@@ -35,6 +35,10 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
     private OnFragmentInteractionListener mListener;
 
     //private final String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+    private ArrayList<String> array = new ArrayList<String>();
+
+//    private final static String[] initialArray=  {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -50,6 +54,7 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -61,20 +66,33 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
     public void onResume()
     {
         super.onResume();
-        String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        //String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        ArrayList<String> array = new ArrayList<String>();
         DailyRandomRecipe trans = new DailyRandomRecipe();
-        for(int i=0; i<7;i++){
+        for(int i=0; i<7;i++) {
             String day = trans.TranslateDay(i);
-            array[i] = day+": " + MainActivity.weekRecipes.get(day).getName();
+            array.add(i, day + ": " + MainActivity.weekRecipes.get(day).getName());
         }
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
+//        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
+        final ListAdapter listAdapter = new ListAdapter(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) getActivity().findViewById(R.id.listview);
-        expandableLayoutListView.setAdapter(arrayAdapter);
+        expandableLayoutListView.setAdapter(listAdapter);
+//        ((ExpandableLayoutItem)expandableLayoutListView.getChildAt(0)).show();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        array.add("Monday");
+        array.add("Tuesday");
+        array.add("Wednesday");
+        array.add("Thursday");
+        array.add("Friday");
+        array.add("Saturday");
+        array.add("Sunday");
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);

@@ -11,7 +11,7 @@
             android:padding="10dp"
             android:textColor="@android:color/white"
             android:text="ExpandableLayout Header!"
-            android:gravity="center"/>
+            android:gravity="center_horizontal" />
 
 
 

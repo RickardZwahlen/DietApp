@@ -1,9 +1,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="se.dullestwall.dietapp.WeekListFragment"
+
     xmlns:expandable="http://schemas.android.com/apk/res-auto">
 
-    <com.andexert.expandablelayout.library.ExpandableLayout
+    <!--<ScrollView-->
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <se.dullestwall.dietapp.ExpandableLayout
         android:id="@+id/expandableLayout"
         xmlns:expandable="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -11,11 +15,12 @@
         expandable:headerLayout="@layout/view_header"
         expandable:contentLayout="@layout/view_content"/>
 
-    <com.andexert.expandablelayout.library.ExpandableLayoutListView
+    <se.dullestwall.dietapp.ExpandableLayoutListView
         android:id="@+id/listview"
         android:layout_below="@+id/first"
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
         android:layout_height="match_parent"/>
 
+    <!--</ScrollView>-->
 </FrameLayout>
