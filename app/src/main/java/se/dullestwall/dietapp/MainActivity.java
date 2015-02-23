@@ -61,12 +61,12 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         //Randomize recipes for each day
         dailyColor = Color.RED;
         if(first==0) {
-            weekRecipes = new HashMap<>();
-            weekTotalIngredients2 = new HashMap<>();
-            weekTotalIngredients = new HashMap<>();
+            weekRecipes = new HashMap();
+            weekTotalIngredients2 = new HashMap();
+            weekTotalIngredients = new HashMap();
             DailyRandomRecipe daily = new DailyRandomRecipe();
             daily.setWeeklyRecipes();
-            weekTotalIngredients2 = (HashMap<String,Recipe>)weekRecipes;
+            weekTotalIngredients2 = weekRecipes;
             daily.getAllIngredients(weekTotalIngredients2);
         }
         first=1;//Checks if its the first time on this page
@@ -213,8 +213,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_main, container, false);
         }
 
         @Override
