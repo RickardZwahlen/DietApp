@@ -44,6 +44,7 @@ public class DailyViewRecipeFragment extends Fragment {
     private static String recImageID;
     private static HashMap<String, List<String>> recIngredient;
     private static List<String> recInstructions;
+    View view;
 
     /**
      * @return a new instance of {@link se.dullestwall.dietapp.DailyViewRecipeFragment}, adding the parameters into a bundle and
@@ -69,9 +70,8 @@ public class DailyViewRecipeFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+    public void onResume() {
+        super.onResume();
         Bundle args = getArguments();
 
         try {
@@ -79,7 +79,11 @@ public class DailyViewRecipeFragment extends Fragment {
             recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
             recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
             recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
+<<<<<<< HEAD
         } catch (NullPointerException e){
+=======
+        }catch (NullPointerException e){
+>>>>>>> origin/rickard4
             recName = "Failed";
             recIngredient = MainActivity.recipes.get(0).getIngredients();
         }
@@ -128,6 +132,28 @@ public class DailyViewRecipeFragment extends Fragment {
             }
 
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.view=view;
+
     }
 
     public int getDrawable(String name) {

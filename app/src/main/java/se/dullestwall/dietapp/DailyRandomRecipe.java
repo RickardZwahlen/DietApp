@@ -1,12 +1,6 @@
 package se.dullestwall.dietapp;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +9,7 @@ import java.util.List;
  */
 public class DailyRandomRecipe {
 
-    String recName;
+
     int randomNum;
     int min = 0;
     int random;
@@ -54,25 +48,34 @@ public class DailyRandomRecipe {
     }
 // Create a groceryList
     public void getAllIngredients(HashMap<String, Recipe> r) {
-        HashMap<String, List<String>> total = new HashMap<>();
+        HashMap<String, List<String>> total = new HashMap();
         boolean done = false;
         double count1 = 0;
         double count2 = 0;
-        HashMap<String, List<String>> hash1 = new HashMap<>();
+        HashMap<String, ArrayList<String>> hash1 = new HashMap();
 
         String day = TranslateDay(0);
         r.get(day).getIngredients();
+        ArrayList<String> nameOne= new ArrayList();
+        ArrayList<String> quantityOne= new ArrayList();
+        ArrayList<String> ingredietOne= new ArrayList();
+        nameOne.addAll(r.get(day).getIngredients().get("iname"));
+        quantityOne.addAll(r.get(day).getIngredients().get("iquantity"));
+        ingredietOne.addAll(r.get(day).getIngredients().get("imeasurement"));
        try{
         if(MainActivity.weekTotalIngredients.isEmpty()){
-            MainActivity.weekTotalIngredients.put("iname",r.get(day).getIngredients().get("iname"));
-            MainActivity.weekTotalIngredients.put("iquantity",r.get(day).getIngredients().get("iquantity"));
-            MainActivity.weekTotalIngredients.put("imeasurement",r.get(day).getIngredients().get("imeasurement"));
+            MainActivity.weekTotalIngredients.put("iname",nameOne);
+            MainActivity.weekTotalIngredients.put("iquantity",quantityOne);
+            MainActivity.weekTotalIngredients.put("imeasurement",ingredietOne);
 
         }}catch (NullPointerException e){
 
        }
         total = (HashMap<String, List<String>>) MainActivity.weekTotalIngredients.clone();
-        hash1 = (HashMap<String, List<String>>) r.get("Tuesday").getIngredients().clone();
+
+        for(int k=1; k< 7; k++) {
+            day = TranslateDay(0);
+            hash1 = (HashMap<String, ArrayList<String>>) r.get(day).getIngredients().clone();
 
             for (int i = 0; i < hash1.get("iname").size(); i++) {
                 String ingredient = hash1.get("iname").get(i);
@@ -83,17 +86,17 @@ public class DailyRandomRecipe {
                 List<String> list1 = total.get("iname");
                 List<String> list2 = total.get("iquantity");
                 List<String> list3 = total.get("imeasurement");
-                    for (int j = 0; j < total.get("iname").size() - 1; j++) {
-                        if (ingredient.equals(total.get("iname").get(j))) {
-                            count1 = Double.valueOf(hash1.get("iquantity").get(i));
-                            count2 = Double.valueOf(total.get("iquantity").get(j));
+                for (int j = 0; j < total.get("iname").size() - 1; j++) {
+                    if (ingredient.equals(total.get("iname").get(j))) {
+                        count1 = Double.valueOf(hash1.get("iquantity").get(i));
+                        count2 = Double.valueOf(total.get("iquantity").get(j));
 
-                            list2.set(j, Double.toString(count1+count2));
+                        list2.set(j, Double.toString(count1 + count2));
 
-                            total.put("iquantity", list2);
-                            done = true;
-                        }
+                        total.put("iquantity", list2);
+                        done = true;
                     }
+                }
 
                 if (!done) {
                     list1.add(string1);
@@ -107,7 +110,8 @@ public class DailyRandomRecipe {
                     done = false;
                 }
             }
-       // MainActivity.weekTotalIngredients = (HashMap<String, List<String>>) total.clone();
+        }
+        MainActivity.weekTotalIngredients = (HashMap<String, List<String>>) total.clone();
     }
 
     public String TranslateDay(int day){
