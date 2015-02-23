@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llShoppingViewBackground"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="#FFA500"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:orientation="vertical"
-       android:background="#FFFFFF"
-       android:layout_marginTop="10dp"
-       android:layout_marginLeft="10dp"
-       android:layout_marginRight="10dp"
-       android:layout_marginBottom="5dp">
+       android:orientation="vertical">
        <ImageView
            android:layout_width="match_parent"
-           android:layout_height="120dp"
-           android:textSize="30sp"
-           android:layout_marginLeft="30dp"
-           android:layout_marginRight="30dp"
-           android:background="@drawable/grocery_list_background"/>
-       </LinearLayout>
+           android:layout_height="wrap_content"
+           android:background="@drawable/grocery_background"
+           android:adjustViewBounds="true"/>
+   </LinearLayout>
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="fill_parent"
@@ -41,7 +34,7 @@
               android:layout_height="wrap_content"
               android:text="To Get: "
               android:gravity="center"
-              android:textSize="25sp"/>
+              android:textStyle="bold" />
        <ListView
            android:id="@android:id/list"
            android:layout_width="fill_parent"
@@ -60,11 +53,11 @@
               android:layout_height="wrap_content"
               android:text="Notes: "
               android:gravity="center"
-              android:textSize="25sp"/>
+              android:textStyle="bold"/>
           <EditText
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:text="Add notes.."
+              android:hint="Add notes.."
               android:gravity="top"/>
       </LinearLayout>
    </LinearLayout>
