@@ -35,9 +35,9 @@ import java.util.List;
  */
 public class DailyViewRecipeFragment extends Fragment {
 
-    private static final String KEY_TITLE = "title";
-    private static final String KEY_INDICATOR_COLOR = "indicator_color";
-    private static final String KEY_DIVIDER_COLOR = "divider_color";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_INDICATOR_COLOR = "indicator_color";
+    public static final String KEY_DIVIDER_COLOR = "divider_color";
     private static final String KEY_IMAGEID = "imageID";
 
     private static String recName;
@@ -74,15 +74,15 @@ public class DailyViewRecipeFragment extends Fragment {
 
         Bundle args = getArguments();
 
-    try {
-        recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
-        recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
-        recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
-        recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
-    }catch (NullPointerException e){
-        recName = "Failed";
-        recIngredient = MainActivity.recipes.get(0).getIngredients();
-    }
+        try {
+            recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
+            recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
+            recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
+            recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
+        } catch (NullPointerException e){
+            recName = "Failed";
+            recIngredient = MainActivity.recipes.get(0).getIngredients();
+        }
 
         if (args != null) {
             int indicatorColor = args.getInt(KEY_INDICATOR_COLOR);

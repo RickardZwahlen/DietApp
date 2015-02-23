@@ -25,7 +25,7 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
         NavigationDrawerFragment.NavigationDrawerCallbacks, WeekListFragment.OnFragmentInteractionListener,
-        DietFragment.OnFragmentInteractionListener {
+        DietFragment.OnFragmentInteractionListener, RecipeDetailFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.

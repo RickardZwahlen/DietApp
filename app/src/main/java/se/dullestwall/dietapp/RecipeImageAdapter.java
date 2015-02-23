@@ -1,7 +1,11 @@
 package se.dullestwall.dietapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +71,23 @@ public class RecipeImageAdapter extends BaseAdapter {
         picture = (ImageView) v.findViewById(R.id.picture);
         name = (TextView) v.findViewById(R.id.text);
 
-        Item item = getItem(i);
+        final Item item = getItem(i);
 
         picture.setImageResource(item.drawableId);
         name.setText(item.name);
+
+        picture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecipeDetailFragment recipeFragment = new RecipeDetailFragment();
+                Bundle args = new Bundle();
+                args.putCharSequence(RecipeDetailFragment.ARG_NAME, item.name);
+                recipeFragment.setArguments(args);
+                FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, recipeFragment);
+                transaction.commit();
+            }
+        });
 
         return v;
     }
