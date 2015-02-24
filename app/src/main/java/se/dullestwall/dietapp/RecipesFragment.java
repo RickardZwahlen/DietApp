@@ -12,7 +12,9 @@ import android.widget.GridView;
 public class RecipesFragment extends android.support.v4.app.Fragment {
     public static final String ARG_DIET = "diet";
 
+
     private String mDiet;
+    private String mWeekday;
 
     private OnFragmentInteractionListener mListener;
 
@@ -28,8 +30,14 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
         RecipeImageAdapter recipeImageAdapter;
         if (mDiet == null) {
             recipeImageAdapter = new RecipeImageAdapter(getActivity());
-        } else {
+        }
+        else if(mWeekday == null)
+        {
             recipeImageAdapter = new RecipeImageAdapter(getActivity(), mDiet);
+        }
+
+        else {
+            recipeImageAdapter = new RecipeImageAdapter(getActivity(), mDiet, mWeekday);
         }
         GridView gridview = (GridView)getActivity().findViewById(R.id.recipes_view);
         gridview.setAdapter(recipeImageAdapter);
@@ -41,6 +49,7 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
 
         if (getArguments() != null) {
             mDiet = getArguments().getString(ARG_DIET);
+            mWeekday = getArguments().getString(WeekListFragment.ARG_WEEKDAY);
         }
 
     }

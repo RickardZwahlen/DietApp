@@ -21,6 +21,8 @@ public class RecipeImageAdapter extends BaseAdapter {
     private final List<Item> mItems = new ArrayList<>();
     private final LayoutInflater mInflater;
 
+    private boolean returnToWeekView = false;
+    private String weekday;
     // Constructor
     public RecipeImageAdapter(Context c) {
         mInflater = LayoutInflater.from(c);
@@ -37,6 +39,20 @@ public class RecipeImageAdapter extends BaseAdapter {
 
         for (Recipe r : MainActivity.recipes) {
             if (r.getDiets().contains(filter)) {
+                String name = r.getImageID();
+                int id = c.getResources().getIdentifier(name, "drawable", c.getPackageName());
+                mItems.add(new Item(r.getName(), id));
+            }
+        }
+    }
+
+    public RecipeImageAdapter(Context c, String filter, String weekday) {
+        mInflater = LayoutInflater.from(c);
+        returnToWeekView=true;
+        this.weekday=weekday;
+        for (Recipe r : MainActivity.recipes) {
+            if (filter.equals("") ||
+                    r.getDiets().contains(filter)) {
                 String name = r.getImageID();
                 int id = c.getResources().getIdentifier(name, "drawable", c.getPackageName());
                 mItems.add(new Item(r.getName(), id));
@@ -82,6 +98,10 @@ public class RecipeImageAdapter extends BaseAdapter {
                 RecipeDetailFragment recipeFragment = new RecipeDetailFragment();
                 Bundle args = new Bundle();
                 args.putCharSequence(RecipeDetailFragment.ARG_NAME, item.name);
+                if(returnToWeekView)
+                {
+                    args.putCharSequence(RecipeDetailFragment.ARG_WEEKDAY, weekday);
+                }
                 recipeFragment.setArguments(args);
                 FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, recipeFragment);

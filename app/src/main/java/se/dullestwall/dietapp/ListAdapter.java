@@ -4,6 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.Image;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +80,20 @@ public class ListAdapter extends ArrayAdapter<String> {
 //                    "    Grill bread on the preheated grill until browned, about 3 minutes per side.\n" +
 //                    "    Spread goat cheese on toasted bread. Add black pepper, salt, and reduced vinegar to the strawberry mixture. Spoon over the goat cheese topped bruschetta. Garnish with additional thyme.\n");
             tv2.setText(MainActivity.weekRecipes.get(array.get(position)).getDescription());
-
+            ImageView searchButton =(ImageView)v.findViewById(R.id.searchButton);
+            final int viewPosition = position;
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RecipesFragment recipesFragment = new RecipesFragment();
+                    Bundle args = new Bundle();
+                    args.putString(WeekListFragment.ARG_WEEKDAY, array.get(viewPosition));
+                    recipesFragment.setArguments(args);
+                    FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, recipesFragment);
+                    transaction.commit();
+                }
+            });
 //            ImageView iconView1 = (ImageView) v.findViewById(R.id.imageView);
 
 //            IconicFontDrawable iconicFontDrawable = new IconicFontDrawable(context);

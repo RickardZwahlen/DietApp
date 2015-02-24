@@ -27,13 +27,15 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String ARG_WEEKDAY = "weekday";
+    public static final String ARG_RECIPE_ID = "recipeId";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private ArrayList<String> array = new ArrayList<String>();
+    private ArrayList<String> array;
 
 //    private final static String[] initialArray=  {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     //private final String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
@@ -67,22 +69,20 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
 //        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
         final ListAdapter listAdapter = new ListAdapter(getActivity(), R.layout.view_row, R.id.header_text, array);
 
-        String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        DailyRandomRecipe trans = new DailyRandomRecipe();
-        for(int i=0; i<7;i++){
-            String day = trans.TranslateDay(i);
-            array[i] = day+": " + MainActivity.weekRecipes.get(day).getName();
-        }
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), R.layout.view_row, R.id.header_text, array);
+
+
+
+
         final ExpandableLayoutListView expandableLayoutListView = (ExpandableLayoutListView) getActivity().findViewById(R.id.listview);
         expandableLayoutListView.setAdapter(listAdapter);
+//        expandableLayoutListView.performItemClick(listAdapter.getView(3,))
 //        ((ExpandableLayoutItem)expandableLayoutListView.getChildAt(0)).show();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        array = new ArrayList<String>();
         array.add("Monday");
         array.add("Tuesday");
         array.add("Wednesday");
@@ -91,11 +91,36 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
         array.add("Saturday");
         array.add("Sunday");
 
+//        String[] array = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        DailyRandomRecipe trans = new DailyRandomRecipe();
+//        for(int i=0; i<7;i++){
+//            String day = trans.TranslateDay(i);
+//            array[i] = day+": " + MainActivity.weekRecipes.get(day).getName();
+//        }
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+        Bundle args = getArguments();
+        if(!args.isEmpty())
+        {
+            long dishId = args.getLong(WeekListFragment.ARG_RECIPE_ID);
+            String weekDay = args.getString(WeekListFragment.ARG_WEEKDAY);
+            if(weekDay!=null)
+            {
+                for(int i=0; i<array.size(); i++)
+                {
+                    if(array.get(i).equals(weekDay))
+                    {
+//                    MainActivity.weekRecipes.get
+//                        MainActivity.weekRecipes.get(weekDay)
+                    }
+                }
+            }
+        }
+
 
 
     }
