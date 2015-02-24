@@ -107,6 +107,10 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
         if(!args.isEmpty())
         {
             long dishId = args.getLong(WeekListFragment.ARG_RECIPE_ID);
+            if(dishId>=MainActivity.recipes.size())
+            {
+                dishId = MainActivity.recipes.size() -1;
+            }
             String weekDay = args.getString(WeekListFragment.ARG_WEEKDAY);
             if(weekDay!=null)
             {
@@ -116,6 +120,9 @@ public class WeekListFragment extends android.support.v4.app.Fragment {
                     {
 //                    MainActivity.weekRecipes.get
 //                        MainActivity.weekRecipes.get(weekDay)
+                        MainActivity.weekRecipes.remove(weekDay);
+                        MainActivity.weekRecipes.put(weekDay, MainActivity.recipes.get((int)dishId));
+                        break;
                     }
                 }
             }

@@ -80,7 +80,7 @@ public class RecipeDetailFragment extends android.support.v4.app.Fragment {
                 WeekListFragment weekListFragment = new WeekListFragment();
                 Bundle args = new Bundle();
                 args.putLong(WeekListFragment.ARG_RECIPE_ID, recipe.getId());
-                args.putCharSequence(WeekListFragment.ARG_WEEKDAY, mWeekday);
+                args.putString(WeekListFragment.ARG_WEEKDAY, mWeekday);
                 weekListFragment.setArguments(args);
                 FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.container, weekListFragment);

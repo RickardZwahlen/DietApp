@@ -51,7 +51,7 @@ public class RecipeImageAdapter extends BaseAdapter {
         returnToWeekView=true;
         this.weekday=weekday;
         for (Recipe r : MainActivity.recipes) {
-            if (filter.equals("") ||
+            if (filter==null ||
                     r.getDiets().contains(filter)) {
                 String name = r.getImageID();
                 int id = c.getResources().getIdentifier(name, "drawable", c.getPackageName());

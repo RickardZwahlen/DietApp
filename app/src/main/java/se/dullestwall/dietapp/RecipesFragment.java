@@ -28,7 +28,7 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
         super.onStart();
 
         RecipeImageAdapter recipeImageAdapter;
-        if (mDiet == null) {
+        if (mDiet == null && mWeekday==null) {
             recipeImageAdapter = new RecipeImageAdapter(getActivity());
         }
         else if(mWeekday == null)
