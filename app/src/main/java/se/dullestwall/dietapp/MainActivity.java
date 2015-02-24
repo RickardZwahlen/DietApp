@@ -17,6 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import com.example.android.common.logger.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -48,6 +54,12 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     public static HashMap<String,Recipe> weekTotalIngredients2;
     public int dailyColor;
     public int first = 0;
+    public static String testTitle="XXX";
+    String p1 = "https://spreadsheets.google.com/tq?key=";
+    String p2 = "15d9PoMYAVNbIBgMfXrr8ka0e3iz2F9rJpOe-GX--88A"; //newRecipe
+    String p3 = "1yyTcjWA6RAUwkI7sKOevWXAJfpITs__Zb0TwilihDCw"; //Telerik
+    String p4 = "1HE_9-3nuA7b2sufFzxPSphccJrt8Pkhrgr1YLT498b8";
+    public String sheetURL =p1+p4;
 
 
     @Override
@@ -228,6 +240,19 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         AssetManager am = this.getAssets();
         InputStream is = null;
 
+        new DownloadWebpageTask(new AsyncResult() {
+            @Override
+            public void onResult(JSONObject object) {
+                try {
+                    processJson(object);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    testTitle = "FelOnResult";
+                }
+            }
+        }).execute(sheetURL);
+
+
         try {
             is = am.open("recipes.json");
             RecipeLoader recipeLoader = new RecipeLoader();
@@ -261,6 +286,42 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    private void processJson(JSONObject object) throws JSONException {
+  //      testTitle="processJson";
+        recipes.clear();
+       try {
+            JSONArray rows = object.getJSONArray("rows");
+            for (int r = 0; r < rows.length(); r++) {
+                JSONObject row = rows.getJSONObject(r);
+
+                JSONArray columns = row.getJSONArray("c");
+                //Name
+                int id = columns.getJSONObject(0).getInt("v");
+                String name = columns.getJSONObject(1).getString("v");
+                String imaID = columns.getJSONObject(2).getString("v");
+                String descr = columns.getJSONObject(3).getString("v");
+                String diet  = columns.getJSONObject(4).getString("v");
+                String inam = columns.getJSONObject(5).getString("v");
+                String iquan = columns.getJSONObject(6).getString("v");
+                String imeas = columns.getJSONObject(7).getString("v");
+                String instr = columns.getJSONObject(8).getString("v");
+
+                testTitle = name;
+                CreateRecipe cr = new CreateRecipe();
+                Recipe rec = cr.putRecipe(id,name,imaID,descr,diet,inam,iquan,imeas,instr);
+                recipes.add(rec);
+            }
+
+         //   final TeamsAdapter adapter = new TeamsAdapter(this, R.layout.team, teams);
+          //  listview.setAdapter(adapter);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+           Log.e("Error", testTitle);
+            testTitle="fel1";
         }
     }
 }
