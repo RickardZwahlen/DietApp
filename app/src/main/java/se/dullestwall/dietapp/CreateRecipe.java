@@ -19,20 +19,21 @@ public class CreateRecipe {
     ArrayList<String> arrListInstructions;
 
     public Recipe putRecipe(int id, String name, String imageID, String description, String diets, String iname, String iquantiry, String imeasurement, String instructions ){
-        String sp = ","; //"\\s+"+
-        arrListName = new ArrayList<>();
-        arrListQuantity = new ArrayList<>();
-        arrListMeasurement = new ArrayList<>();
-        arrListDiets = new ArrayList<>();
-        arrListInstructions = new ArrayList<>();
-        ingredients= new HashMap<>();
+        String splitIngredients ="\\,"+"\\s+"; //"\\s+"+
+        String splitInstructions ="\\."+"\\,"+"\\s+";
+        arrListName = new ArrayList();
+        arrListQuantity = new ArrayList();
+        arrListMeasurement = new ArrayList();
+        arrListDiets = new ArrayList();
+        arrListInstructions = new ArrayList();
+        ingredients= new HashMap();
 
         //Splitting all ingredient related and adding in Arraylist
-        String[] allIngr = iname.split(sp);
-        String[] allQuan = iquantiry.split(sp);
-        String[] allMeas = imeasurement.split(sp);
-        String[] allDiet = diets.split(sp);
-        String[] allInst = instructions.split(sp);
+        String[] allIngr = iname.split(splitIngredients);
+        String[] allQuan = iquantiry.split(splitIngredients);
+        String[] allMeas = imeasurement.split(splitIngredients);
+        String[] allDiet = diets.split(splitIngredients);
+        String[] allInst = instructions.split(splitInstructions);
         for(int i=0; i<allIngr.length;i++){
             arrListName.add(allIngr[i]);
             arrListQuantity.add(allQuan[i]);

@@ -12,10 +12,10 @@ import java.util.List;
 
 public class RecipeLoader {
 
-    public List<Recipe> readJsonStream(InputStream in) throws IOException {
+    public ArrayList<Recipe> readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
-            return readRecipesArray(reader);
+            return (ArrayList<Recipe>)readRecipesArray(reader);
         } finally {
             reader.close();
         }
