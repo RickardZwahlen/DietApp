@@ -27,6 +27,8 @@ public class Recipe {
         return name;
     }
 
+    public long getId() { return id;}
+
     public String getDescription() {
         return description;
     }

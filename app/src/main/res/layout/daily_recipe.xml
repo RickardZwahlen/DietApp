@@ -58,6 +58,13 @@
            android:layout_height="wrap_content"
            android:textAppearance="?android:attr/textAppearanceLarge" />
 
+        <ImageView
+            android:id="@+id/ivSwapRecipe"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/shuffle" />
+
         </LinearLayout></LinearLayout>
 </ScrollView>
 

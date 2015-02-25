@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +14,11 @@ import android.widget.TextView;
 
 public class RecipeDetailFragment extends android.support.v4.app.Fragment {
     public static final String ARG_NAME = "name";
+    public static final String ARG_WEEKDAY = "weekday";
 
     private String mName;
     private Recipe recipe;
+    private String mWeekday;
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,8 +37,9 @@ public class RecipeDetailFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mName = getArguments().getString(ARG_NAME);
-
+            mWeekday = getArguments().getString(ARG_WEEKDAY);
             recipe = findRecipe(mName);
+
         }
     }
 
@@ -63,6 +68,26 @@ public class RecipeDetailFragment extends android.support.v4.app.Fragment {
         TextView title = (TextView)getActivity().findViewById(R.id.tvDailyRecipeName);
         title.setText(recipe.getName());
         title.setTextSize(22);
+
+        ImageView swapRecipeInWeekView = (ImageView)getActivity().findViewById(R.id.ivSwapRecipe);
+
+        //TODO IF mWeekday!=null, show a button. When the user clicks that button, start the WeekListFragment
+        //with the mWeekday and the recipe in a bundle somehow
+
+        swapRecipeInWeekView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WeekListFragment weekListFragment = new WeekListFragment();
+                Bundle args = new Bundle();
+                args.putLong(WeekListFragment.ARG_RECIPE_ID, recipe.getId());
+                args.putString(WeekListFragment.ARG_WEEKDAY, mWeekday);
+                weekListFragment.setArguments(args);
+                FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, weekListFragment);
+                transaction.commit();
+            }
+        });
+
 
         TextView IngHead = (TextView)getActivity().findViewById(R.id.tvDailyIngredientHeader);
         IngHead.setText("Ingredients:");
