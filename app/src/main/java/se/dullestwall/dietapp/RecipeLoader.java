@@ -11,13 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class RecipeLoader {
-<<<<<<< HEAD
+
     private long recipeID=0;
-    public List<Recipe> readJsonStream(InputStream in) throws IOException {
-=======
 
     public ArrayList<Recipe> readJsonStream(InputStream in) throws IOException {
->>>>>>> origin/patrik2
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
             return (ArrayList<Recipe>)readRecipesArray(reader);
