@@ -94,7 +94,7 @@ public class DailyViewRecipeFragment extends Fragment {
 
             //Shows Title (What day)
             TextView title = (TextView) view.findViewById(R.id.tvDailyRecipeName);
-            title.setText(MainActivity.testTitle);//recName);
+            title.setText(recName);//recName);
             title.setTextSize(22);
 
             //args.getCharSequence(KEY_TITLE)
