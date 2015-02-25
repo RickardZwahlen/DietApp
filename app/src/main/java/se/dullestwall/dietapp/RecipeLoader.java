@@ -12,10 +12,12 @@ import java.util.List;
 
 public class RecipeLoader {
 
-    public List<Recipe> readJsonStream(InputStream in) throws IOException {
+    private long recipeID=0;
+
+    public ArrayList<Recipe> readJsonStream(InputStream in) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
         try {
-            return readRecipesArray(reader);
+            return (ArrayList<Recipe>)readRecipesArray(reader);
         } finally {
             reader.close();
         }
@@ -40,12 +42,13 @@ public class RecipeLoader {
         List<String> diets = null;
         HashMap<String,List<String>> ingredients = null;
         List<String> instructions = null;
-
         reader.beginObject();
         while (reader.hasNext()) {
             String next = reader.nextName();
             if (next.equals("id")) {
                 id = reader.nextLong();
+                id=recipeID;
+                recipeID++;
             } else if (next.equals("name")) {
                 name = reader.nextString();
             } else if (next.equals("imageID")) {

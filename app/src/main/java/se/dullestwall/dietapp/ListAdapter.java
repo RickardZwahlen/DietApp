@@ -4,6 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.Image;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,17 +66,34 @@ public class ListAdapter extends ArrayAdapter<String> {
         if (p != null) {
             ImageView iv = (ImageView) v.findViewById(R.id.rowImageView);
             String url = "http://images.media-allrecipes.com/userphotos/140x140/00/86/93/869323.jpg";
-            Picasso.with(context).load(url).resize(200, 200).into(iv);
+            String imageId =MainActivity.weekRecipes.get(array.get(position)).getImageID();
+            int imageIntId = context.getResources().getIdentifier(imageId, "drawable", context.getApplicationContext().getPackageName());
+            Picasso.with(context).load(imageIntId).resize(200, 200).into(iv);
             TextView tv = (TextView) v.findViewById(R.id.header_text);
-            tv.setText(array.get(position));
+            String dishName= MainActivity.weekRecipes.get(array.get(position)).getName();
+            tv.setText(array.get(position) + "      " + dishName);
             TextView tv2 = (TextView) v.findViewById(R.id.rowTextView);
-            tv2.setText("Strawberry Goat Cheese Bruschetta\n" + 
-                  "    Heat vinegar in a small skillet over medium-low heat. Simmer until reduced by about half, 8 to 10 minutes. Remove from heat and allow to cool to room temperature.\n" +
-                    "    Prepare a grill for high heat. Place bread slices on a foil-lined baking sheet and drizzle with olive oil.\n" +
-                    "    Combine strawberries and thyme in a small bowl and set aside.\n" +
-                    "    Grill bread on the preheated grill until browned, about 3 minutes per side.\n" +
-                    "    Spread goat cheese on toasted bread. Add black pepper, salt, and reduced vinegar to the strawberry mixture. Spoon over the goat cheese topped bruschetta. Garnish with additional thyme.\n");
-
+//            tv2.setText("Strawberry Goat Cheese Bruschetta\n" +
+//                  "    Heat vinegar in a small skillet over medium-low heat. Simmer until reduced by about half, 8 to 10 minutes. Remove from heat and allow to cool to room temperature.\n" +
+//                    "    Prepare a grill for high heat. Place bread slices on a foil-lined baking sheet and drizzle with olive oil.\n" +
+//                    "    Combine strawberries and thyme in a small bowl and set aside.\n" +
+//                    "    Grill bread on the preheated grill until browned, about 3 minutes per side.\n" +
+//                    "    Spread goat cheese on toasted bread. Add black pepper, salt, and reduced vinegar to the strawberry mixture. Spoon over the goat cheese topped bruschetta. Garnish with additional thyme.\n");
+            tv2.setText(MainActivity.weekRecipes.get(array.get(position)).getDescription());
+            ImageView searchButton =(ImageView)v.findViewById(R.id.searchButton);
+            final int viewPosition = position;
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RecipesFragment recipesFragment = new RecipesFragment();
+                    Bundle args = new Bundle();
+                    args.putString(WeekListFragment.ARG_WEEKDAY, array.get(viewPosition));
+                    recipesFragment.setArguments(args);
+                    FragmentTransaction transaction = ((FragmentActivity)v.getContext()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, recipesFragment);
+                    transaction.commit();
+                }
+            });
 //            ImageView iconView1 = (ImageView) v.findViewById(R.id.imageView);
 
 //            IconicFontDrawable iconicFontDrawable = new IconicFontDrawable(context);

@@ -31,7 +31,7 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements RecipesFragment.OnFragmentInteractionListener,
         NavigationDrawerFragment.NavigationDrawerCallbacks, WeekListFragment.OnFragmentInteractionListener,
-        DietFragment.OnFragmentInteractionListener {
+        DietFragment.OnFragmentInteractionListener, RecipeDetailFragment.OnFragmentInteractionListener {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
     String p4 = "1HE_9-3nuA7b2sufFzxPSphccJrt8Pkhrgr1YLT498b8";
     public String sheetURL =p1+p4;
 
+    public boolean allRDY=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,10 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         setContentView(R.layout.activity_main);
 
         // Loads recipes from Json file
-        loadRecipes();
+  //      loadRecipes();
+//        recipes = (List<Recipe>)savedInstanceState.get("allrecipes");
         loadDiets();
+
         //Randomize recipes for each day
         dailyColor = Color.RED;
         if(first==0) {
@@ -236,7 +239,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         }
     }
 
-    private void loadRecipes() {
+    public void loadRecipes() {
         AssetManager am = this.getAssets();
         InputStream is = null;
 
@@ -269,7 +272,7 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
         }
     }
 
-    private void loadDiets() {
+    public void loadDiets() {
         AssetManager am = this.getAssets();
         InputStream is = null;
 
@@ -313,8 +316,8 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
                 CreateRecipe cr = new CreateRecipe();
                 Recipe rec = cr.putRecipe(id,name,imaID,descr,diet,inam,iquan,imeas,instr);
                 recipes.add(rec);
-            }
 
+            }
          //   final TeamsAdapter adapter = new TeamsAdapter(this, R.layout.team, teams);
           //  listview.setAdapter(adapter);
 
@@ -323,5 +326,8 @@ public class MainActivity extends ActionBarActivity implements RecipesFragment.O
            Log.e("Error", testTitle);
             testTitle="fel1";
         }
+        finally {
+
+       }
     }
 }

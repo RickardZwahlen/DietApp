@@ -10,20 +10,13 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 public class RecipesFragment extends android.support.v4.app.Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public static final String ARG_DIET = "diet";
 
-    //Patrik Fix
-    RecipeImageAdapter recipeImageAdapter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mDiet;
+    private String mWeekday;
 
     private OnFragmentInteractionListener mListener;
-
 
     public RecipesFragment() {
         // Required empty public constructor
@@ -33,7 +26,19 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
     public void onStart()
     {
         super.onStart();
-        RecipeImageAdapter recipeImageAdapter = new RecipeImageAdapter(getActivity());
+
+        RecipeImageAdapter recipeImageAdapter;
+        if (mDiet == null && mWeekday==null) {
+            recipeImageAdapter = new RecipeImageAdapter(getActivity());
+        }
+        else if(mWeekday == null)
+        {
+            recipeImageAdapter = new RecipeImageAdapter(getActivity(), mDiet);
+        }
+
+        else {
+            recipeImageAdapter = new RecipeImageAdapter(getActivity(), mDiet, mWeekday);
+        }
         GridView gridview = (GridView)getActivity().findViewById(R.id.recipes_view);
         gridview.setAdapter(recipeImageAdapter);
     }
@@ -43,8 +48,8 @@ public class RecipesFragment extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mDiet = getArguments().getString(ARG_DIET);
+            mWeekday = getArguments().getString(WeekListFragment.ARG_WEEKDAY);
         }
 
     }
