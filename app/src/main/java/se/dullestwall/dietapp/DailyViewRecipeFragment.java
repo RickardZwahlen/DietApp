@@ -79,12 +79,7 @@ public class DailyViewRecipeFragment extends Fragment {
             recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
             recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
             recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
-<<<<<<< HEAD
         } catch (NullPointerException e){
-
-=======
-        }catch (NullPointerException e){
->>>>>>> origin/rickard6
             recName = "Failed";
             recIngredient = MainActivity.recipes.get(0).getIngredients();
         }
