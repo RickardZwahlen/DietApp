@@ -44,7 +44,6 @@ public class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         try {
             JSONObject table = new JSONObject(jsonResponse);
             callback.onResult(table);
-
         } catch (JSONException e) {
             e.printStackTrace();
             MainActivity.testTitle="FelPost";

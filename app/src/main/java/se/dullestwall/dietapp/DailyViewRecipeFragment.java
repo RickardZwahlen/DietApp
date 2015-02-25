@@ -35,16 +35,15 @@ import java.util.List;
  */
 public class DailyViewRecipeFragment extends Fragment {
 
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_INDICATOR_COLOR = "indicator_color";
-    public static final String KEY_DIVIDER_COLOR = "divider_color";
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_INDICATOR_COLOR = "indicator_color";
+    private static final String KEY_DIVIDER_COLOR = "divider_color";
     private static final String KEY_IMAGEID = "imageID";
 
     private static String recName;
     private static String recImageID;
     private static HashMap<String, List<String>> recIngredient;
     private static List<String> recInstructions;
-    View view;
 
     /**
      * @return a new instance of {@link se.dullestwall.dietapp.DailyViewRecipeFragment}, adding the parameters into a bundle and
@@ -70,19 +69,20 @@ public class DailyViewRecipeFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         Bundle args = getArguments();
 
-        try {
-            recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
-            recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
-            recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
-            recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
-        } catch (NullPointerException e){
-            recName = "Failed";
-            recIngredient = MainActivity.recipes.get(0).getIngredients();
-        }
+    try {
+        recName = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getName();
+        recIngredient = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getIngredients();
+        recInstructions = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getInstructions();
+        recImageID = MainActivity.weekRecipes.get(args.getCharSequence(KEY_TITLE)).getImageID();
+    }catch (NullPointerException e){
+        recName = "Failed";
+        recIngredient = MainActivity.recipes.get(0).getIngredients();
+    }
 
         if (args != null) {
             int indicatorColor = args.getInt(KEY_INDICATOR_COLOR);
@@ -94,7 +94,7 @@ public class DailyViewRecipeFragment extends Fragment {
 
             //Shows Title (What day)
             TextView title = (TextView) view.findViewById(R.id.tvDailyRecipeName);
-            title.setText(recName);//recName);
+            title.setText(MainActivity.testTitle);//recName);
             title.setTextSize(22);
 
             //args.getCharSequence(KEY_TITLE)
@@ -128,28 +128,6 @@ public class DailyViewRecipeFragment extends Fragment {
             }
 
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        this.view=view;
-
     }
 
     public int getDrawable(String name) {

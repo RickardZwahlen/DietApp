@@ -5,7 +5,7 @@
     <string name="title_section1">Calendar</string>
     <string name="title_section2">Recipes</string>
     <string name="title_section3">Week View</string>
-    <string name="title_section4">Grocery List</string>
+    <string name="title_section4">Recipe Detail</string>
     <string name="title_section5">Diets</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

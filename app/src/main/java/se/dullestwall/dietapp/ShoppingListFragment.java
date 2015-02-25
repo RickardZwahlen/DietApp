@@ -88,7 +88,7 @@ public class ShoppingListFragment extends android.support.v4.app.ListFragment {
 
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.llShoppingViewBackground);
         int color = getColor();
-        //ll.setBackgroundColor(color);
+        ll.setBackgroundColor(color);
         return view;
     }
 

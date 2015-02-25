@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="9">
+    >
 
         <TextView
             android:id="@+id/header_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:textColor="@android:color/black"
-            android:layout_weight="7"
-            android:gravity="start"/>
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:text="ExpandableLayout Header!"
+            android:gravity="center_horizontal" />
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/rowImageView"
-            android:layout_weight="2"
-            android:gravity="end"/>
+
 
 </LinearLayout>

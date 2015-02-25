@@ -28,5 +28,10 @@
         "id": 6,
         "name": "Vegetarian",
         "imageID": "vegetarian"
+    },
+    {
+        "id": 7,
+        "name": "Raw Food",
+        "imageID": "raw_food"
     }
 ]

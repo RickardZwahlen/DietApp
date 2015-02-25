@@ -9,6 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link DietFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link DietFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class DietFragment extends android.support.v4.app.Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,6 +75,13 @@ public class DietFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_diets, container, false);
+    }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
     }
 
     @Override
