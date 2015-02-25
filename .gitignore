@@ -41,20 +41,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-<<<<<<< HEAD
-
-.idea/workspace.xml
-
-*.bin
-
-.gradle/2.2.1/taskArtifacts/cache.properties.lock
-
-.gradle/2.2.1/taskArtifacts/fileHashes.bin
-
-.gradle/2.2.1/taskArtifacts/fileSnapshots.bin
-
-.gradle/2.2.1/taskArtifacts/taskArtifacts.bin
-=======
 *.bin
 *.lock
 .gradle/2.2.1/taskArtifacts/cache.properties.lock
@@ -83,4 +69,3 @@ app/build.gradle
 .idea/libraries/droidicon_0_1_6.xml
 .idea/workspace.xml
 app/app.iml
->>>>>>> origin/rickard

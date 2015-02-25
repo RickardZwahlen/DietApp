@@ -74,6 +74,7 @@ public class ExpandableLayoutListView extends ListView
             }
         }
 
+
         ExpandableLayoutItem expandableLayout = (ExpandableLayoutItem) getChildAt(position - getFirstVisiblePosition()).findViewWithTag(ExpandableLayoutItem.class.getName());
 
         if (expandableLayout.isOpened())
